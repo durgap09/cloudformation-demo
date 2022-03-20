@@ -10,7 +10,7 @@ Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
     Default: orange
-    Type: AWS::EC2::KeyPair::KeyName
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::KeyPair::KeyName>
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
   InstanceType:
     Description: WebServer EC2 instance type
