@@ -15,10 +15,10 @@ Parameters:
 #    ConstrainDescription: Must be the name of an existing Ec2 KeyPair
   InstanceType: 
     Description: App EC2 instance type
-    Type: AWS::SSM::Parameter::Value<String>
+    Type: String #AWS::SSM::Parameter::Value<String>
   SubnetID: 
     Description: App EC2 instance type
-    Type: AWS::SSM::Parameter::Value<AWS::EC2::Subnet>
+    Type: String #AWS::SSM::Parameter::Value<AWS::EC2::Subnet>
   ImageID: 
     Description: App EC2 instance type
     Type: String #AWS::SSM::Parameter::Value<AWS::EC2::Image::ID>
