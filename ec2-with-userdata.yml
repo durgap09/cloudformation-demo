@@ -7,6 +7,7 @@ Parameters:
     Type: String
   VpcId:
     Description: VPC Id for resources
+    Default: String
     Type: AWS::SSM::Parameter::Value<AWS::EC2::VPC>
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable access to the instance 
