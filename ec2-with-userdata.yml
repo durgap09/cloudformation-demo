@@ -1,70 +1,39 @@
-Description: >
-    This template is design to deploy EC2 instance in AWS environment.
+AWSTemplateFormatVersion: 2010-09-09
+Description: AZ Parameter demo
 
 Parameters:
- # EnvironmentName:
- #   Description: An environment name that will be prefixed to resource names
- #   Type: String
-  VpcId:
-    Description: VPC Id for resources
-    Default: AWS::SSM::Parameter::Value<AWS::EC2::VPC>
+  MyKeyName:
+    Description: Select the key name from the list
+    Type: AWS::EC2::KeyPair::KeyName
+  MyAvailabilityZone:
+    Description: Select the AZ
     Type: String
-  KeyName:
-    Description: Name of an existing EC2 KeyPair to enable access to the instance 
-    Default: AWS::SSM::Parameter::Value<AWS::EC2::KeyPair::KeyName>
-    Type: String
-#    ConstrainDescription: Must be the name of an existing Ec2 KeyPair
-  InstanceType: 
-    Description: App EC2 instance type
-    Default: AWS::SSM::Parameter::Value<String>
-    Type: String 
-  SubnetID: 
-    Description: App EC2 instance type
-    Default: AWS::SSM::Parameter::Value<AWS::EC2::Subnet>
-    Type: String 
-  ImageID: 
-    Description: App EC2 instance type
-    Default: AWS::SSM::Parameter::Value<AWS::EC2::Image::ID>
-    Type: String 
-  
-Resources:
-  EC2Instance1:
-    Type: AWS::EC2:Instance
-    Properties:
-      InstanceType:
-        Ref: InstanceType
-      KeyName:
-        Ref: KeyName
-      DisableApiTermination: true
-      ImageId: 
-        Ref: ImageID
-      SubnetId: 
-        Ref: SubnetID
-      SecurityGroupIds: sg-099b9caf0073e0a4e
-      BlockDeviceMappings:
-        -
-          DeviceName: /dev/sda1
-          Ebs:
-            VolumeSize: 50
+    Default: us-east-2a
+    AllowedValues:
+      - us-east-2a
+      - us-east-2b    
+      - us-east-2c
+  MyInstanceType:
+    Description: Select the ec2 instance type from SSM
+    Type: AWS::SSM::Parameter::Value<String>
 
-      Tags:
-        - Key: Name
-          Value: test58
-        - Key: Product
-          Value: test
-        - Key: Type
-          Value: Appserver
-      
-      UserData:
-        Fn::Base64: !Sub |
-            #!/bin/bash
-            yum install httpd -y
-            service httpd start
-            echo "<html><body><h1>Hello from Region ${AWS::Region}<h1></body></html>" > /var/www/html/index.html
-            
-Outputs:
-    PublicIP:
-    Description: Public IP address of the newly created EC2 instance
-    Value: !GetAtt [EC2Instance, PublicIp]
-
-        
+Resources: 
+  DevEC2Instance: 
+    Type: 'AWS::EC2::Instance'
+    Properties: 
+      ImageId: ami-0cd3dfa4e37921605
+      InstanceType: !Ref MyInstanceType
+      KeyName: !Ref MyKeyName
+      SecurityGroups:
+        - default        
+        - !Ref SSHSecurityGroup 
+      AvailabilityZone: !Ref MyAvailabilityZone      
+  SSHSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties: 
+      GroupDescription: my new SSH security group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
