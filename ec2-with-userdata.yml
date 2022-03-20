@@ -10,7 +10,7 @@ Parameters:
     Type: String #AWS::SSM::Parameter::Value<AWS::EC2::VPC>
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable access to the instance 
-    Default: orange
+    Default: String
     Type: AWS::SSM::Parameter::Value<AWS::EC2::KeyPair::KeyName>
 #    ConstrainDescription: Must be the name of an existing Ec2 KeyPair
   InstanceType: 
