@@ -11,18 +11,21 @@ Parameters:
     Type: String
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable access to the instance 
-    Default: String
-    Type: AWS::SSM::Parameter::Value<AWS::EC2::KeyPair::KeyName>
+    Default: AWS::SSM::Parameter::Value<AWS::EC2::KeyPair::KeyName>
+    Type: String
 #    ConstrainDescription: Must be the name of an existing Ec2 KeyPair
   InstanceType: 
     Description: App EC2 instance type
-    Type: String #AWS::SSM::Parameter::Value<String>
+    Default: AWS::SSM::Parameter::Value<String>
+    Type: String 
   SubnetID: 
     Description: App EC2 instance type
-    Type: String #AWS::SSM::Parameter::Value<AWS::EC2::Subnet>
+    Default: AWS::SSM::Parameter::Value<AWS::EC2::Subnet>
+    Type: String 
   ImageID: 
     Description: App EC2 instance type
-    Type: String #AWS::SSM::Parameter::Value<AWS::EC2::Image::ID>
+    Default: AWS::SSM::Parameter::Value<AWS::EC2::Image::ID>
+    Type: String 
   
 Resources:
   EC2Instance1:
