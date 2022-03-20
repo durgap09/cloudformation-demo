@@ -12,7 +12,7 @@ Parameters:
     Description: Name of an existing EC2 KeyPair to enable access to the instance 
     Default: orange
     Type: AWS::SSM::Parameter::Value<AWS::EC2::KeyPair::KeyName>
-    ConstrainDEscription: Must be the name of an existing Ec2 KeyPair
+    ConstrainDescription: Must be the name of an existing Ec2 KeyPair
   InstanceType: 
     Description: App EC2 instance type
     Type: AWS::SSM::Parameter::Value<String>
