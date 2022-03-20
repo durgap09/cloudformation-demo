@@ -2,9 +2,9 @@ Description: >
     This template is design to deploy EC2 instance in AWS environment.
 
 Parameters:
-  EnvironmentName:
-    Description: An environment name that will be prefixed to resource names
-    Type: String
+ # EnvironmentName:
+ #   Description: An environment name that will be prefixed to resource names
+ #   Type: String
   VpcId:
     Description: VPC Id for resources
     Default: AWS::SSM::Parameter::Value<AWS::EC2::VPC>
