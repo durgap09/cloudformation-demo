@@ -15,7 +15,7 @@ Parameters:
       - us-east-2c
   MyInstanceType:
     Description: Select the ec2 instance type from SSM
-    Type: AWS::SSM::Parameter::Value<String>
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::InstanceType>
 
 Resources: 
   DevEC2Instance: 
