@@ -6,12 +6,12 @@ Parameters:
   VpcId: 
     Description: VPC id 
     Type: String
-    Default: vpc-0abd3e892b3173fef
+    Default: AWS::SSM::Parameter::Value<AWS::EC2::VPC>
 
   SubnetId1:
     Description: Subnet Id where instance will create 
     Type: String
-    Default: subnet-0aa61297da4494313
+    Default: AWS::SSM::Parameter::Value<AWS::EC2::Subnet>
 
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
@@ -35,7 +35,7 @@ Parameters:
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
 
   LatestAmiId:
-    Type:  'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Type:  AWS::SSM::Parameter::Value<AWS::EC2::Image::ID>
     Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
 
 Resources:
